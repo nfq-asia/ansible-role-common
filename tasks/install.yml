@@ -9,3 +9,9 @@
       - vim-tiny
       - rsync
       - logrotate
+
+- name: Install OpenJDK JRE 8
+  apt:
+    name: "openjdk-8-jre-headless"
+    state: present
+  when: (java_enabled == 'True')
