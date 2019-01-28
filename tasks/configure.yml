@@ -1,0 +1,20 @@
+---
+- name: Disable MOTD
+  file:
+    path: "/etc/update-motd.d"
+    mode: 0644
+    recurse: yes
+
+- name: Create www directory
+  file:
+    path: "{{ www_path }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0774
+    recurse: yes
+  register: www_dir
+  when: (www_path is defined)
+
+- name: Configure NTP to use NTP time server
+  command: "timedatectl set-ntp true"

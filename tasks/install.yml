@@ -1,0 +1,11 @@
+- name: Install necessary packages
+  apt: 
+    force_apt_get: yes
+    name: "{{ packages }}"
+    install_recommends: no
+    state: present
+  vars:
+    packages:
+      - vim-tiny
+      - rsync
+      - logrotate

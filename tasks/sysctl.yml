@@ -1,0 +1,11 @@
+- name: Disable swapiness
+  sysctl:
+    name: vm.swappiness
+    value: 0
+    state: present
+
+- name: Increase Process Id numbers
+  sysctl:
+    name: kernel.pid_max
+    value: 4194303
+    state: present
