@@ -1,5 +1,5 @@
 - name: Install necessary packages
-  apt: 
+  apt:
     force_apt_get: yes
     name: "{{ packages }}"
     install_recommends: no
@@ -9,6 +9,8 @@
       - vim-tiny
       - rsync
       - logrotate
+      - rsyslog
+      - python
 
 - name: Install OpenJDK JRE 8
   apt:
