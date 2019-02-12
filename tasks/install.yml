@@ -10,7 +10,6 @@
       - rsync
       - logrotate
       - rsyslog
-      - python
 
 - name: Install OpenJDK JRE 8
   apt:
