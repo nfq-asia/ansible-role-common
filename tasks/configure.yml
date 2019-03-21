@@ -16,5 +16,8 @@
   register: www_dir
   when: (www_path is defined)
 
-- name: Configure NTP to use NTP time server
-  command: "timedatectl set-ntp true"
+- name: Upload chronyd config
+  copy:
+    src: "chrony.conf"
+    dest: "/etc/chrony/chrony.conf"
+  notify: restart chronyd

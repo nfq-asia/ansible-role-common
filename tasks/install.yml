@@ -1,8 +1,9 @@
 - name: Install necessary packages
   apt:
-    force_apt_get: yes
+    force_apt_get: true
+    update_cache: true
     name: "{{ packages }}"
-    install_recommends: no
+    install_recommends: false
     state: present
   vars:
     packages:
@@ -10,9 +11,11 @@
       - rsync
       - logrotate
       - rsyslog
+      - tzdata
+      - chrony
 
 - name: Install OpenJDK JRE 8
   apt:
     name: "openjdk-8-jre-headless"
     state: present
-  when: (java_enabled == 'True')
+  when: java_enabled

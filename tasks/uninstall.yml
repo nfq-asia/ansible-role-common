@@ -1,11 +1,11 @@
 - name: Uninstall unnecessary packages
   apt:
-    force_apt_get: yes
+    force_apt_get: true
     name: "{{ packages }}"
     state: absent
-    autoremove: yes
-    autoclean: yes
-    purge: yes
+    autoremove: true
+    autoclean: true
+    purge: true
   vars:
     packages:
       - lxcfs
@@ -14,4 +14,37 @@
       - snapd
       - sosreport
       - powermgmt-base
+      - btrfs-progs
+      - btrfs-tools
   register: uninstalled
+
+- name: Disable systemd services
+  systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+    force: true
+    masked: true
+  loop:
+    - systemd-timesyncd
+    - systemd-resolved
+
+- name: Check resolv.conf link
+  stat:
+    path: "/etc/resolv.conf"
+  register: resolv
+
+- name: Unlink systemd-resolved resolv.conf
+  file:
+    path: "/etc/resolv.conf"
+    state: absent
+  when: resolv.stat.exists and resolv.stat.islnk
+
+- name: AWS EC2 metadata
+  ec2_metadata_facts:
+
+- name: Upload resolv.conf
+  template:
+    src: "resolv.conf.j2"
+    dest: "/etc/resolv.conf"
+    force: true

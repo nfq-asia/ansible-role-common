@@ -5,12 +5,13 @@
 
 - name: Fully upgrade Linux distribution 
   apt:
-    force_apt_get: yes
-    upgrade: dist
-    update_cache: yes
-    autoclean: yes
-    autoremove: yes
-    purge: yes
+    force_apt_get: true
+    upgrade: full
+    update_cache: true
+    autoclean: true
+    autoremove: true
+    purge: true
+  when: upgrade_os_enabled
   register: os_updated
   tags:
     - upgrade

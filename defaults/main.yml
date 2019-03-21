@@ -1,4 +1,5 @@
 ---
 # defaults file for ansible-common
 
-java_enabled: False
+upgrade_os_enabled: false
+java_enabled: false
