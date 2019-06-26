@@ -19,6 +19,9 @@
 - name: Reboot server after updated OS 
   reboot:
   when: os_updated is changed
+  tags:
+    - upgrade
+    - never
 
 - include_tasks: install.yml
   tags:
