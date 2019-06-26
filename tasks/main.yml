@@ -14,6 +14,7 @@
   register: os_updated
   tags:
     - upgrade
+    - never
 
 - name: Reboot server after updated OS 
   reboot:
