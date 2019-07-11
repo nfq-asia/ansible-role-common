@@ -2,18 +2,6 @@
   apt:
     force_apt_get: yes
     update_cache: yes
-    name: "{{ packages }}"
-    install_recommends: no
+    name: "{{ install_packages }}"
+    install_recommends: yes
     state: present
-  vars:
-    packages:
-      - vim-tiny
-      - rsync
-      - logrotate
-      - rsyslog
-
-- name: Install OpenJDK JRE 8
-  apt:
-    name: "openjdk-8-jre-headless"
-    state: present
-  when: (java_enabled == 'True')

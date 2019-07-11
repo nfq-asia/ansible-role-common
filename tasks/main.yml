@@ -1,28 +1,4 @@
 ---
-- include_tasks: uninstall.yml
-  tags:
-    - uninstall
-
-- name: Fully upgrade Linux distribution 
-  apt:
-    force_apt_get: yes
-    upgrade: dist
-    update_cache: yes
-    autoclean: yes
-    autoremove: yes
-    purge: yes
-  register: os_updated
-  tags:
-    - upgrade
-    - never
-
-- name: Reboot server after updated OS 
-  reboot:
-  when: os_updated is changed
-  tags:
-    - upgrade
-    - never
-
 - include_tasks: install.yml
   tags:
     - install
@@ -34,3 +10,7 @@
 - include_tasks: configure.yml
   tags:
     - configs
+
+- include_tasks: uninstall.yml
+  tags:
+    - uninstall

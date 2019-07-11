@@ -1,4 +1,23 @@
 ---
 # defaults file for ansible-common
 
-java_enabled: False
+vm_hostname: aws-instance
+
+install_packages:
+  - "vim"
+  - "curl"
+  - "wget"
+  - "tree"
+  - "rsync"
+  - "logrotate"
+  - "rsyslog"
+  - "sysstat"
+
+uninstall_packages:
+  - "lxcfs"
+  - "lxd"
+  - "lxd-client"
+  - "snapd"
+  - "sosreport"
+  - "powermgmt-base"
+

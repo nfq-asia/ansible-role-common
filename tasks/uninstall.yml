@@ -1,17 +1,9 @@
 - name: Uninstall unnecessary packages
   apt:
     force_apt_get: yes
-    name: "{{ packages }}"
+    name: "{{ uninstall_packages }}"
     state: absent
     autoremove: yes
     autoclean: yes
     purge: yes
-  vars:
-    packages:
-      - lxcfs
-      - lxd
-      - lxd-client
-      - snapd
-      - sosreport
-      - powermgmt-base
   register: uninstalled
