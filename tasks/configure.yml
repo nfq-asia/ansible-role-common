@@ -9,7 +9,12 @@
       insertbefore: BOF
 
 - name: Enable sysstat
-  shell: echo ENABLED="true" >> /etc/default/sysstat
+  block:
+  - shell: echo ENABLED="true" >> /etc/default/sysstat
+  - service:
+      name: sysstat
+      state: restarted
+      enabled: yes
 
 - name: Disable message-of-the-day MOTD
   file:
