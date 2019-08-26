@@ -1,7 +1,14 @@
 ---
-- hosts: all
-  become: yes
+- hosts: wireguard_master
+  gather_facts: yes
+  become: true
+  vars:
+    ansible_ssh_user             : "ubuntu"
+    ansible_ssh_private_key_file : "~/.ssh/nfq-tools"
+    ansible_python_interpreter   : "/usr/bin/python3"
+    project_name  : "nfq"
+    env           : "tools"
   roles:
     - role: nfq.common
       vars:
-        ansible_python_interpreter: "/usr/bin/python3"
+        vm_hostname: "{{ project_name }}-{{ env }}-wireguard"

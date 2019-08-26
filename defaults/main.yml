@@ -8,10 +8,18 @@ install_packages:
   - "curl"
   - "wget"
   - "tree"
+  - "zip"
+  - "unzip"
+  - "gzip"
   - "rsync"
   - "logrotate"
   - "rsyslog"
   - "sysstat"
+  - "python3-pip"
+  - "dnsutils"
+  - "jq"
+  - "iotop"
+  - "lsof"
 
 uninstall_packages:
   - "lxcfs"
