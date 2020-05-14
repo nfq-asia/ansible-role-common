@@ -1,4 +1,3 @@
-
 # Ansible common role
 
 This ansible role will uninstall/install defaults Linux packages, and configure services including: hostname, sysctl.conf, and more ...
@@ -27,4 +26,3 @@ Include this role into a playbook
       vars:
         vm_hostname: "{{ project_name }}-{{ env }}-wireguard"
 ```
-
